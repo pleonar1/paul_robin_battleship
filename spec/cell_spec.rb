@@ -35,8 +35,27 @@ RSpec.describe Cell do
 
     expect(cell.fired_upon?).to eq false
 
-    cruiser.hit
+    cell.fire_upon
 
     expect(cell.fired_upon?).to eq true
+  end
+
+  it 'renders the board' do
+    cell = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+
+    cell.place_ship(cruiser)
+
+    expect(cell.render).to eq(".")
+
+    cell.fire_upon
+
+    expect(cell.render).to eq("H")
+    
+    cruiser.hit
+    cruiser.hit
+    cruiser.hit
+
+    expect(cell.render).to eq("X")
   end
 end
