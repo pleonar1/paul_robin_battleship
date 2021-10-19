@@ -4,13 +4,20 @@ class Cell
 
   def initialize(coordinate)
     @coordinate = coordinate
-    @ship = []
+    @ship       = nil
   end
 
-  def ship
-    ship.count(coordinate)
+  def empty?
+    if @ship == nil
+      true
+    else
+      false
+    end
   end
 
+  def place_ship(ship)
+    @ship = ship
 
+  end
 
 end
