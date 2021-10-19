@@ -34,5 +34,9 @@ RSpec.describe Cell do
     cell.place_ship(cruiser)
 
     expect(cell.fired_upon?).to eq false
+
+    cruiser.hit
+
+    expect(cell.fired_upon?).to eq true
   end
 end
