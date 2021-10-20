@@ -6,7 +6,7 @@ RSpec.describe Ship do
 
     expect(cruiser).to be_instance_of(Ship)
     expect(cruiser.length).to eq(3)
-    expect(cruiser.health).to eq(3)
+    expect(cruiser.ship_health).to eq(3)
   end
 
   it 'checks if the cruiser is sunk' do
