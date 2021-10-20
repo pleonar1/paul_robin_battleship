@@ -51,7 +51,7 @@ RSpec.describe Cell do
     cell.fire_upon
 
     expect(cell.render).to eq("H")
-    
+
     cruiser.hit
     cruiser.hit
     cruiser.hit

@@ -32,16 +32,20 @@ class Cell
     @fired_upon = true
     if empty? == false
       @health = 0
+      # @ship.hit
     end
   end
 
   def render
     if @fired_upon == true && empty? == true
       "M"
-    elsif @fired_upon == true && @health == 0
+    elsif @fired_upon == true && @health == 0 && empty? == false
       "H"
-    elsif @fired_upon == true && @health == 0 && ship.ship_health == nil
+      if ship.sunk? == true
       "X"
+      else
+      "H"
+    end
     else
       "."
     end
