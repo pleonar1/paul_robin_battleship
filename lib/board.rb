@@ -33,7 +33,7 @@ class Board
       @second_cells => ["A2", "B2", "C2", "D2"],
       @third_cells => ["A3", "C3", "C3", "D3"],
       @fourth_cells => ["A4", "C4", "C4", "D4"]
-              }
+    } #>>>>>>>>>>>>>>EVENTUALLY WE WILL USE THE .each_cons METHOD TO ACCESS THESE. ALSO (any?, all?, none?) methods
 
   end
 
