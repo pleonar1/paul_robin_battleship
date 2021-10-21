@@ -35,12 +35,9 @@ class Board
       ["A4", "B4", "C4", "D4"]
     ]
 
-    #EVENTUALLY WE WILL USE THE .each_cons METHOD TO ACCESS THESE. ALSO (any?, all?, none?) methods
-
     @all_placement_combos = []
     @all_placements = @possible_placements.flatten
     @placement_valid = false
-
 
   end
 
@@ -85,3 +82,5 @@ class Board
     end
   end
 end
+
+#EVENTUALLY WE WILL USE THE .each_cons METHOD TO ACCESS THESE. ALSO (any?, all?, none?) methods
