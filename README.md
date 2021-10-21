@@ -10,18 +10,6 @@ Schedule
 
   interaction patterns
 
-  pry(main)> require './lib/board'
-  # => true
-
-  pry(main)> require './lib/ship'
-  # => true
-
-  pry(main)> board = Board.new
-  # => #<Board:0x00007fcb0e1f6720...>
-
-  pry(main)> cruiser = Ship.new("Cruiser", 3)    
-  # => #Cruiser
-
   pry(main)> board.place(cruiser, ["A1", "A2", "A3"])    
 
   pry(main)> cell_1 = board.cells["A1"]    
