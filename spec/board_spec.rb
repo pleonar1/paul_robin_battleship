@@ -51,8 +51,8 @@ RSpec.describe "Board" do
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
 
-    expect(board.valid_placement?(cruiser, ["A1", "B2", "C3"])).to be(false)
-    expect(board.valid_placement?(submarine, ["C2", "D3"])).to be(false)
+    expect(board.valid_placement?(cruiser, ["A1", "B2", "C3"])).to eq(false)
+    expect(board.valid_placement?(submarine, ["C2", "D3"])).to eq(false)
   end
 
   xit 'passes some valid placements' do

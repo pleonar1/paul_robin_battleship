@@ -48,9 +48,4 @@ class Board
       false
     end
   end
-
-def
-
-
-
 end
