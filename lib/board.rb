@@ -24,16 +24,23 @@ class Board
      "D4" => Cell.new("D4"),
     }
 
-    @possible_placements = {
-      @a_cells => ["A1", "A2", "A3", "A4"],
-      @b_cells => ["B1", "B2", "B3", "B4"],
-      @c_cells => ["C1", "C2", "C3", "C4"],
-      @d_cells => ["D1", "D2", "D3", "D4"],
-      @first_cells => ["A1", "B1", "C1", "D1"],
-      @second_cells => ["A2", "B2", "C2", "D2"],
-      @third_cells => ["A3", "C3", "C3", "D3"],
-      @fourth_cells => ["A4", "C4", "C4", "D4"]
-    } #>>>>>>>>>>>>>>EVENTUALLY WE WILL USE THE .each_cons METHOD TO ACCESS THESE. ALSO (any?, all?, none?) methods
+    @possible_placements = [
+      ["A1", "A2", "A3", "A4"],
+      ["B1", "B2", "B3", "B4"],
+      ["C1", "C2", "C3", "C4"],
+      ["D1", "D2", "D3", "D4"],
+      ["A1", "B1", "C1", "D1"],
+      ["A2", "B2", "C2", "D2"],
+      ["A3", "B3", "C3", "D3"],
+      ["A4", "B4", "C4", "D4"]
+    ]
+
+    #EVENTUALLY WE WILL USE THE .each_cons METHOD TO ACCESS THESE. ALSO (any?, all?, none?) methods
+
+    @all_placement_combos = []
+    @all_placements = @possible_placements.flatten
+    @placement_valid = false
+
 
   end
 
@@ -41,11 +48,40 @@ class Board
     @cells.include?(coordinate)
   end
 
-  def valid_placement? (name, placements) #This isnt working
-    if @length == placements.count #For example cruiser has @length as 3, and there need to be three items in the array
-      true
+  def valid_placement?(ship, placements)
+
+    all_placement_combos(ship, placements)
+    placement_check(ship, placements)
+
+    if placements.first[0] == placements.last[0] || placements.first[1] == placements.last[1]
+      @placement_valid = true
     else
-      false
+      @placement_valid = false
+    end
+
+    if ship.length == placements.count
+    else
+      @placement_valid = false
+    end
+
+    if @all_placement_combos.any?(placements)
+    else
+      @placement_valid = false
+    end
+
+    p @placement_valid
+
+  end
+
+  def all_placement_combos(ship, placements)
+    @all_placements.each_cons(ship.length) { |placement| @all_placement_combos << placement}
+  end
+
+  def placement_check(ship, placements)
+    if @all_placement_combos.any?(placements) == true
+      @placement_valid = true
+    else
+      @placement_valid = false
     end
   end
 end
