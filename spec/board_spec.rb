@@ -82,7 +82,7 @@ RSpec.describe "Board" do
     expect(cell_3.ship == cell_2.ship).to eq(true)
   end
 
-  it 'makes sure that ships dont overlap' do
+  xit 'makes sure that ships dont overlap' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
 
