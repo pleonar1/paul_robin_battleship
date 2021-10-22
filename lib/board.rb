@@ -77,6 +77,7 @@ class Board
 
   def all_placement_combos(ship, placements)
     @all_placements.each_cons(ship.length) { |placement| @all_placement_combos << placement}
+    require "pry"; binding.pry
   end
 
   def placement_check(ship, placements)
@@ -97,16 +98,15 @@ class Board
 
   def render
     @new_board = Hash.new
-    rendered_board = "  1 2 3 4 \n"
+    rendered_board = "  1 2 3 4 "
     ('A'..'D').each do |letter|
-      rendered_board += "#{letter} "
+      rendered_board += "\n#{letter} "
       (1..4).each do |number|
-         @new_board["#{letter}#{number}"] = "."
+         @new_board["#{letter}#{number}"] = ". "
          rendered_board += @new_board["#{letter}#{number}"]
       end
-      rendered_board
-
     end
+    rendered_board
   end
 end
 
