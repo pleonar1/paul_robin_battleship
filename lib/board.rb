@@ -81,6 +81,14 @@ class Board
       @placement_valid = false
     end
   end
+
+  def place(ship, placements)
+    if valid_placement?(ship, placements) == true
+      placements.each do |placement|
+        @cells[placement].place_ship(ship)
+      end
+    end
+  end
 end
 
 #EVENTUALLY WE WILL USE THE .each_cons METHOD TO ACCESS THESE. ALSO (any?, all?, none?) methods
