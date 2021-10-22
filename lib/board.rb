@@ -24,6 +24,7 @@ class Board
      "D4" => Cell.new("D4"),
     }
 
+
     @possible_placements = [
       ["A1", "A2", "A3", "A4"],
       ["B1", "B2", "B3", "B4"],
@@ -91,6 +92,20 @@ class Board
       placements.each do |placement|
         @cells[placement].place_ship(ship)
       end
+    end
+  end
+
+  def render
+    @new_board = Hash.new
+    rendered_board = "  1 2 3 4 \n"
+    ('A'..'D').each do |letter|
+      rendered_board += "#{letter} "
+      (1..4).each do |number|
+         @new_board["#{letter}#{number}"] = "."
+         rendered_board += @new_board["#{letter}#{number}"]
+      end
+      rendered_board
+
     end
   end
 end
