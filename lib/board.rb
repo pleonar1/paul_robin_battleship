@@ -2,7 +2,7 @@ require './lib/ship'
 require './lib/cell'
 
 class Board
-  attr_reader :cells
+  attr_reader :cells, :used_positions
 
   def initialize
     @cells = {
@@ -38,7 +38,7 @@ class Board
     @all_placement_combos = []
     @all_placements = @possible_placements.flatten
     @placement_valid = false
-
+    @used_positions = []
   end
 
   def valid_coordinate?(coordinate)
@@ -66,8 +66,12 @@ class Board
       @placement_valid = false
     end
 
+    placements.each do |placement|
+      if @cells[placement].empty? == false
+        @placement_valid = false
+      end
+    end
     @placement_valid
-
   end
 
   def all_placement_combos(ship, placements)
