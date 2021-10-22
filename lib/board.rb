@@ -66,7 +66,7 @@ class Board
       @placement_valid = false
     end
 
-    p @placement_valid
+    @placement_valid
 
   end
 
