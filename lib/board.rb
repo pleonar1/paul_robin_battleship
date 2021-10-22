@@ -81,6 +81,14 @@ class Board
       @placement_valid = false
     end
   end
+
+  # def place(ship, placements)
+  #   valid_placement?(ship, placements)
+  #   if @placement_valid == true
+  #   else
+  #     p "Not a valid placement!"
+  #   end
+  # end
 end
 
 #EVENTUALLY WE WILL USE THE .each_cons METHOD TO ACCESS THESE. ALSO (any?, all?, none?) methods

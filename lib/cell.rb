@@ -32,7 +32,6 @@ class Cell
     @fired_upon = true
     if empty? == false
       @health = 0
-      # @ship.hit?
     end
   end
 
