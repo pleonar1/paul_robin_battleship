@@ -104,7 +104,7 @@ class Board
 
     @new_board
 
-    
+
     # if reveal == false
     #   @new_board = Hash.new
     #   rendered_board = "  1 2 3 4 "
