@@ -104,7 +104,6 @@ class Board
 
     @new_board
 
-
     # if reveal == false
     #   @new_board = Hash.new
     #   rendered_board = "  1 2 3 4 "
@@ -120,34 +119,6 @@ class Board
     #   show_positions
     # end
   end
->>>>>>> a7516c7a7a984a30c317ee1d1d28e486b6be38b1
 end
-
-
-
-
-# if reveal = false
-#   @new_board = Hash.new
-#   rendered_board = "  1 2 3 4 "
-#   ('A'..'D').each do |letter|
-#     rendered_board += "\n#{letter} "
-#     (1..4).each do |number|
-#       @new_board["#{letter}#{number}"] = ". "
-#        rendered_board += @new_board["#{letter}#{number}"]
-#     end
-#   end
-#   rendered_board
-# else
-#   @new_board = Hash.new
-#   rendered_board = "  1 2 3 4 "
-#   ('A'..'D').each do |letter|
-#     rendered_board += "\n#{letter} "
-#     (1..4).each do |number|
-#       @new_board["#{letter}#{number}"] = ". "
-#     end
-#     @used_positions.each do |position|
-#         @new_board["#{position.split[0]}#{position.split[1]}"] = "S "
-#       end
-#     end
 
 #EVENTUALLY WE WILL USE THE .each_cons METHOD TO ACCESS THESE. ALSO (any?, all?, none?) methods
