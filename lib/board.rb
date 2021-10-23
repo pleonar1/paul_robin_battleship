@@ -77,7 +77,6 @@ class Board
 
   def all_placement_combos(ship, placements)
     @all_placements.each_cons(ship.length) { |placement| @all_placement_combos << placement}
-    require "pry"; binding.pry
   end
 
   def placement_check(ship, placements)
@@ -96,18 +95,58 @@ class Board
     end
   end
 
-  def render
-    @new_board = Hash.new
-    rendered_board = "  1 2 3 4 "
-    ('A'..'D').each do |letter|
-      rendered_board += "\n#{letter} "
-      (1..4).each do |number|
-         @new_board["#{letter}#{number}"] = ". "
-         rendered_board += @new_board["#{letter}#{number}"]
-      end
-    end
-    rendered_board
+  def render (reveal = false)
+    @new_board = ("  1 2 3 4 \n")
+    @new_board += ("A " + @cells["A1"].render(reveal) + ' ' + @cells["A2"].render(reveal) + ' ' + @cells["A3"].render(reveal) + ' ' + @cells["A4"].render(reveal))
+    @new_board += (" \nB " + @cells["B1"].render(reveal) + ' ' + @cells["B2"].render(reveal) + ' ' + @cells["B3"].render(reveal) + ' ' + @cells["B4"].render(reveal))
+    @new_board += (" \nC " + @cells["C1"].render(reveal) + ' ' + @cells["C2"].render(reveal) + ' ' + @cells["C3"].render(reveal) + ' ' + @cells["C4"].render(reveal))
+    @new_board += (" \nD " + @cells["D1"].render(reveal) + ' ' + @cells["D2"].render(reveal) + ' ' + @cells["D3"].render(reveal) + ' ' + @cells["D4"].render(reveal) + ' ')
+
+    @new_board
+
+    
+    # if reveal == false
+    #   @new_board = Hash.new
+    #   rendered_board = "  1 2 3 4 "
+    #   ('A'..'D').each do |letter|
+    #     rendered_board += "\n#{letter} "
+    #     (1..4).each do |number|
+    #        @new_board["#{letter}#{number}"] = ". "
+    #        rendered_board += @new_board["#{letter}#{number}"]
+    #     end
+    #   end
+    #   rendered_board
+    # else
+    #   show_positions
+    # end
   end
 end
+
+
+
+
+# if reveal = false
+#   @new_board = Hash.new
+#   rendered_board = "  1 2 3 4 "
+#   ('A'..'D').each do |letter|
+#     rendered_board += "\n#{letter} "
+#     (1..4).each do |number|
+#       @new_board["#{letter}#{number}"] = ". "
+#        rendered_board += @new_board["#{letter}#{number}"]
+#     end
+#   end
+#   rendered_board
+# else
+#   @new_board = Hash.new
+#   rendered_board = "  1 2 3 4 "
+#   ('A'..'D').each do |letter|
+#     rendered_board += "\n#{letter} "
+#     (1..4).each do |number|
+#       @new_board["#{letter}#{number}"] = ". "
+#     end
+#     @used_positions.each do |position|
+#         @new_board["#{position.split[0]}#{position.split[1]}"] = "S "
+#       end
+#     end
 
 #EVENTUALLY WE WILL USE THE .each_cons METHOD TO ACCESS THESE. ALSO (any?, all?, none?) methods

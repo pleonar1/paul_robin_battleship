@@ -36,7 +36,7 @@ class Cell
     end
   end
 
-  def render
+  def render(reveal = false)
     if @fired_upon == true && empty? == true
       "M"
     elsif @fired_upon == true && @health == 0 && empty? == false
