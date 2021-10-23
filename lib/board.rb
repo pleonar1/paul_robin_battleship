@@ -2,7 +2,7 @@ require './lib/ship'
 require './lib/cell'
 
 class Board
-  attr_reader :cells
+  attr_reader :cells, :used_positions
 
   def initialize
     @cells = {
@@ -24,6 +24,7 @@ class Board
      "D4" => Cell.new("D4"),
     }
 
+
     @possible_placements = [
       ["A1", "A2", "A3", "A4"],
       ["B1", "B2", "B3", "B4"],
@@ -38,7 +39,7 @@ class Board
     @all_placement_combos = []
     @all_placements = @possible_placements.flatten
     @placement_valid = false
-
+    @used_positions = []
   end
 
   def valid_coordinate?(coordinate)
@@ -66,8 +67,12 @@ class Board
       @placement_valid = false
     end
 
-    p @placement_valid
-
+    placements.each do |placement|
+      if @cells[placement].empty? == false
+        @placement_valid = false
+      end
+    end
+    @placement_valid
   end
 
   def all_placement_combos(ship, placements)
@@ -82,13 +87,67 @@ class Board
     end
   end
 
-  # def place(ship, placements)
-  #   valid_placement?(ship, placements)
-  #   if @placement_valid == true
-  #   else
-  #     p "Not a valid placement!"
-  #   end
-  # end
+  def place(ship, placements)
+    if valid_placement?(ship, placements) == true
+      placements.each do |placement|
+        @cells[placement].place_ship(ship)
+      end
+    end
+  end
+
+  def render (reveal = false)
+    @new_board = ("  1 2 3 4 \n")
+    @new_board += ("A " + @cells["A1"].render(reveal) + ' ' + @cells["A2"].render(reveal) + ' ' + @cells["A3"].render(reveal) + ' ' + @cells["A4"].render(reveal))
+    @new_board += (" \nB " + @cells["B1"].render(reveal) + ' ' + @cells["B2"].render(reveal) + ' ' + @cells["B3"].render(reveal) + ' ' + @cells["B4"].render(reveal))
+    @new_board += (" \nC " + @cells["C1"].render(reveal) + ' ' + @cells["C2"].render(reveal) + ' ' + @cells["C3"].render(reveal) + ' ' + @cells["C4"].render(reveal))
+    @new_board += (" \nD " + @cells["D1"].render(reveal) + ' ' + @cells["D2"].render(reveal) + ' ' + @cells["D3"].render(reveal) + ' ' + @cells["D4"].render(reveal) + ' ')
+
+    @new_board
+
+
+    # if reveal == false
+    #   @new_board = Hash.new
+    #   rendered_board = "  1 2 3 4 "
+    #   ('A'..'D').each do |letter|
+    #     rendered_board += "\n#{letter} "
+    #     (1..4).each do |number|
+    #        @new_board["#{letter}#{number}"] = ". "
+    #        rendered_board += @new_board["#{letter}#{number}"]
+    #     end
+    #   end
+    #   rendered_board
+    # else
+    #   show_positions
+    # end
+  end
+>>>>>>> a7516c7a7a984a30c317ee1d1d28e486b6be38b1
 end
+
+
+
+
+# if reveal = false
+#   @new_board = Hash.new
+#   rendered_board = "  1 2 3 4 "
+#   ('A'..'D').each do |letter|
+#     rendered_board += "\n#{letter} "
+#     (1..4).each do |number|
+#       @new_board["#{letter}#{number}"] = ". "
+#        rendered_board += @new_board["#{letter}#{number}"]
+#     end
+#   end
+#   rendered_board
+# else
+#   @new_board = Hash.new
+#   rendered_board = "  1 2 3 4 "
+#   ('A'..'D').each do |letter|
+#     rendered_board += "\n#{letter} "
+#     (1..4).each do |number|
+#       @new_board["#{letter}#{number}"] = ". "
+#     end
+#     @used_positions.each do |position|
+#         @new_board["#{position.split[0]}#{position.split[1]}"] = "S "
+#       end
+#     end
 
 #EVENTUALLY WE WILL USE THE .each_cons METHOD TO ACCESS THESE. ALSO (any?, all?, none?) methods

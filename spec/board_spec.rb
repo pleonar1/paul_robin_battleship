@@ -69,12 +69,11 @@ RSpec.describe "Board" do
   it 'places a ship' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
-
-    board.place(cruiser, ["A1", "A2", "A3"])
-
     cell_1 = board.cells["A1"]
     cell_2 = board.cells["A2"]
     cell_3 = board.cells["A3"]
+
+    board.place(cruiser, ["A1", "A2", "A3"])
 
     expect(cell_1.ship).to eq(cruiser)
     expect(cell_2.ship).to eq(cruiser)
@@ -82,7 +81,7 @@ RSpec.describe "Board" do
     expect(cell_3.ship == cell_2.ship).to eq(true)
   end
 
-  xit 'makes sure that ships dont overlap' do
+  it 'makes sure that ships dont overlap' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
 
@@ -90,7 +89,26 @@ RSpec.describe "Board" do
 
     submarine = Ship.new("Submarine", 2)
 
+
     expect(board.valid_placement?(submarine, ["A1", "B1"])).to eq(false)
     expect(board.valid_placement?(submarine, ["C3", "D3"])).to eq(true)
+  end
+
+  it 'renders the board' do
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+
+    expect(board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . ")
+  end
+
+  it 'shows the ships'do
+  board = Board.new
+  cruiser = Ship.new("Cruiser", 3)
+
+  board.place(cruiser, ["A1", "A2", "A3"])
+
+  board.render
+
+  expect(board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . ")
   end
 end
