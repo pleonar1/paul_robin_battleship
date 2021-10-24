@@ -24,23 +24,23 @@ def main_menu
 end
 
 def start
-  p "I have laid out my ships on the grid."
-  p "You now need to lay out your two ships."
-  p "The Cruiser is three units long and the Submarine is two units long."
+  puts "I have laid out my ships on the grid."
+  puts "You now need to lay out your two ships."
+  puts "The Cruiser is three units long and the Submarine is two units long."
   puts @board.render
 
 
   player_placements = []
-  p "Enter the squares for the Cruiser (3 spaces):"
-  p "Position 1: "
-  '>'
+  puts "Enter the squares for the Cruiser (3 spaces):"
+  puts "Position 1: "
+
   cruiser_placement_1 = gets.chomp.to_s.upcase
   player_placements << cruiser_placement_1
-  p "Position 2: "
+  puts "Position 2: "
 
   cruiser_placement_2 = gets.chomp.to_s.upcase
   player_placements << cruiser_placement_2
-  p "Position 3: "
+  puts "Position 3: "
 
   cruiser_placement_3 = gets.chomp.to_s.upcase
   # require "pry"; binding.pry
@@ -58,17 +58,17 @@ def start
 end
 
 def set_sub
-  p "Now you can set your Submarine"
-  p "For a valid placement, the sub cannot overlap with cruiser"
+  puts "Now you can set your Submarine"
+  puts "For a valid placement, the sub cannot overlap with cruiser"
   puts @board.render(true)
 
   player_placements = []
-  p "Enter the squares for the Submarine (2 spaces):"
-  p "Position 1: "
+  puts "Enter the squares for the Submarine (2 spaces):"
+  puts "Position 1: "
 
   sub_placement_1 = gets.chomp.to_s.upcase
   player_placements << sub_placement_1
-  p "Position 2: "
+  puts "Position 2: "
   sub_placement_2 = gets.chomp.to_s.upcase
   player_placements << sub_placement_2
 
@@ -90,4 +90,3 @@ end
 
 
 main_menu
-start
