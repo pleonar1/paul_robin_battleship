@@ -123,7 +123,7 @@ def set_computer_cruiser
   comp_cruiser_placement_2 = (('A'..'D').to_a.sample + rand(1..4).to_s)
   computer_cruiser_placements << comp_cruiser_placement_2
 
-  comp_cruiser_placement_3 = (('C'..'D').to_a.sample + rand(1..4).to_s)
+  comp_cruiser_placement_3 = (('A'..'D').to_a.sample + rand(1..4).to_s)
   computer_cruiser_placements << comp_cruiser_placement_3
 
   # puts computer_cruiser_placements
