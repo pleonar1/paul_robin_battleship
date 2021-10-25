@@ -37,11 +37,11 @@ def start
   puts @board.render
 
 
-  player_placements = []
+  player_placements = [] #<<<< This will be removed
   puts "Enter the squares for the Cruiser (3 spaces):"
 
   puts "Position 1: "
-  cruiser_placement_1 = gets.chomp.to_s.upcase
+  cruiser_placement_1 = gets.chomp.to_s.upcase #<<<< This onward will be removed
     if cruiser_placement_1 == "!"
       end_program
     else
@@ -59,7 +59,7 @@ def start
   puts "Position 3: "
   cruiser_placement_3 = gets.chomp.to_s.upcase
   player_placements << cruiser_placement_3
-    if cruiser_placement_2 == "!"
+    if cruiser_placement_3 == "!"
       end_program
     else
   end
@@ -204,9 +204,9 @@ def computer_take_turn
 end
 
 
+setup.place_ship(@cruiser)
 
-
-main_menu
+# main_menu
 
 def end_program
   puts "Thanks for playing."
