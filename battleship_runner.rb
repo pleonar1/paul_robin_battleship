@@ -3,12 +3,14 @@ require './lib/cell'
 require './lib/board'
 require './lib/setup'
 
-@board        = Board.new
-@comp_board   = Board.new
-@cruiser      = Ship.new("Cruiser", 3)
-@submarine    = Ship.new("Submarine", 2)
-@comp_cruiser = Ship.new("Cruiser", 3)
-@comp_sub     = Ship.new("Submarine", 2)
+@board            = Board.new
+@comp_board       = Board.new
+@cruiser          = Ship.new("Cruiser", 3)
+@submarine        = Ship.new("Submarine", 2)
+@comp_cruiser     = Ship.new("Cruiser", 3)
+@comp_sub         = Ship.new("Submarine", 2)
+@player_setup     = Setup.new("Player")
+@computer_setup   = Setup.new("Computer")
 
 
 def main_menu
@@ -204,7 +206,7 @@ def computer_take_turn
 end
 
 
-setup.place_ship(@cruiser)
+@player_setup.place_ships
 
 # main_menu
 
