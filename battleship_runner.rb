@@ -158,10 +158,10 @@ end
 def gameplay
   until @comp_cruiser.ship_health == 0 && @comp_sub.ship_health == 0 || @cruiser.ship_health == 0 && @submarine.ship_health == 0
     take_turn
-    if @comp_cruiser.ship_health == 0 && @comp_sub.ship_health == 0
+    if @comp_cruiser.sunk? == true && @comp_sub.sunk? == true
       puts "You won!"
       end_program
-    else
+    elsif @cruiser.sunk? == true  && @submarine.sunk? == true
       puts "Computer has won. Better luck next time..."
       main_menu
     end
@@ -172,7 +172,7 @@ end
 def take_turn
   puts "\n Enter the coordinate for your shot:"
   user_shot = gets.chomp.to_s.upcase
-  if @comp_board.valid_coordinate?(user_shot) == true
+  if @comp_board.valid_coordinate?(user_shot) == true && @comp_board.cells[user_shot].fired_upon? == false
     @comp_board.cells[user_shot].fire_upon
     puts "\n=============COMPUTER BOARD============="
     puts @comp_board.render
@@ -190,7 +190,7 @@ end
 
 def computer_take_turn
   comp_shot = (('A'..'D').to_a.sample + rand(1..4).to_s)
-  if @board.cells[comp_shot].fired_upon == true
+  if @board.cells[comp_shot].fired_upon? == true
     computer_take_turn
   else
     @board.cells[comp_shot].fire_upon
