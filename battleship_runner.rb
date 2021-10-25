@@ -1,6 +1,7 @@
 require './lib/ship'
 require './lib/cell'
 require './lib/board'
+require './lib/setup'
 
 @board        = Board.new
 @comp_board   = Board.new
