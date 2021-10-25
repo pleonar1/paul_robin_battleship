@@ -1,13 +1,18 @@
 require './lib/ship'
 require './lib/cell'
 require './lib/board'
+require './lib/setup'
 
-@board        = Board.new
-@comp_board   = Board.new
-@cruiser      = Ship.new("Cruiser", 3)
-@submarine    = Ship.new("Submarine", 2)
-@comp_cruiser = Ship.new("Computer Cruiser", 3)
-@comp_sub     = Ship.new("Computer Submarine", 2)
+
+@board            = Board.new
+@comp_board       = Board.new
+@cruiser          = Ship.new("Cruiser", 3)
+@submarine        = Ship.new("Submarine", 2)
+@comp_cruiser     = Ship.new("Computer Cruiser", 3)
+@comp_sub         = Ship.new("Computer Submarine", 2)
+@player_setup     = Setup.new("Player")
+@computer_setup   = Setup.new("Computer")
+
 
 
 def main_menu
@@ -37,11 +42,11 @@ def start
   puts @board.render(true)
 
 
-  player_placements = []
+  player_placements = [] #<<<< This will be removed
   puts "Enter the squares for the Cruiser (3 spaces):"
 
   puts "Position 1: "
-  cruiser_placement_1 = gets.chomp.to_s.upcase
+  cruiser_placement_1 = gets.chomp.to_s.upcase #<<<< This onward will be removed
     if cruiser_placement_1 == "!"
       end_program
     else
@@ -59,7 +64,7 @@ def start
   puts "Position 3: "
   cruiser_placement_3 = gets.chomp.to_s.upcase
   player_placements << cruiser_placement_3
-    if cruiser_placement_2 == "!"
+    if cruiser_placement_3 == "!"
       end_program
     else
   end
@@ -208,9 +213,14 @@ def computer_take_turn
 end
 
 
+@player_setup.place_ships
+
+
+
 
 
 main_menu
+
 def end_program
   puts "BYE  BYE"
 
