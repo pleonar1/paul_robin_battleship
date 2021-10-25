@@ -3,14 +3,16 @@ require './lib/cell'
 require './lib/board'
 require './lib/setup'
 
+
 @board            = Board.new
 @comp_board       = Board.new
 @cruiser          = Ship.new("Cruiser", 3)
 @submarine        = Ship.new("Submarine", 2)
-@comp_cruiser     = Ship.new("Cruiser", 3)
-@comp_sub         = Ship.new("Submarine", 2)
+@comp_cruiser     = Ship.new("Computer Cruiser", 3)
+@comp_sub         = Ship.new("Computer Submarine", 2)
 @player_setup     = Setup.new("Player")
 @computer_setup   = Setup.new("Computer")
+
 
 
 def main_menu
@@ -21,6 +23,7 @@ def main_menu
 
   if user_input == "q"
     "Ok. Maybe another time!"
+    end_program
   elsif user_input == "p"
     "Awesome! Here we go!"
     start
@@ -36,7 +39,7 @@ def start
   puts "You now need to lay out your two ships."
   puts "The Cruiser is three units long and the Submarine is two units long."
   puts "==============PLAYER BOARD=============="
-  puts @board.render
+  puts @board.render(true)
 
 
   player_placements = [] #<<<< This will be removed
@@ -157,18 +160,20 @@ def set_computer_submarine
   end
 end
 
-
-def gameplay
-  until @comp_cruiser.ship_health == 0 && @comp_sub.ship_health == 0 || @cruiser.ship_health == 0 && @submarine.ship_health == 0
-    take_turn
+  def is_game_over?
     if @comp_cruiser.sunk? == true && @comp_sub.sunk? == true
       puts "You won!"
-      end_program
+      main_menu
     elsif @cruiser.sunk? == true  && @submarine.sunk? == true
       puts "Computer has won. Better luck next time..."
       main_menu
+    else
+
     end
   end
+
+def gameplay
+  take_turn
 end
 
 
@@ -181,6 +186,7 @@ def take_turn
     puts @comp_board.render
     puts "Your shot on " + "#{user_shot.upcase}"
     puts "#{@comp_board.cells[user_shot].feedback}"
+    is_game_over?
     computer_take_turn
   elsif user_shot == "!"
     end_program
@@ -201,6 +207,7 @@ def computer_take_turn
     puts @board.render(true)
     puts "The computer's shot on " + "#{comp_shot}"
     puts "#{@board.cells[comp_shot].feedback}"
+    is_game_over?
     take_turn
   end
 end
@@ -208,8 +215,13 @@ end
 
 @player_setup.place_ships
 
-# main_menu
+
+
+
+
+main_menu
 
 def end_program
-  puts "Thanks for playing."
+  puts "BYE  BYE"
+
 end
