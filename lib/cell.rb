@@ -3,7 +3,8 @@ require './lib/ship'
 class Cell
   attr_reader :coordinate,
               :ship,
-              :fired_upon
+              :fired_upon,
+              :health
 
   def initialize(coordinate)
     @coordinate = coordinate
