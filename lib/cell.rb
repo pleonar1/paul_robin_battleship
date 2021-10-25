@@ -78,10 +78,11 @@ class Cell
   end
 
   def feedback
-    if render == "S"
-        puts "has sunk the #{@ship.name}!"
-      elsif render == "H"
+      if render == "H"
         puts "has hit the #{@ship.name}!"
+      elsif render == "X"
+        puts "has hit the #{@ship.name}!"
+        puts "Bingo!!! #{@ship.name} has been sunk!"
       else
         puts "was a miss."
     end
