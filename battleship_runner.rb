@@ -106,8 +106,7 @@ def set_computer_cruiser
   # puts computer_cruiser_placements
   if @comp_board.valid_placement?(@comp_cruiser, computer_cruiser_placements) == true
     @comp_board.place(@comp_cruiser, computer_cruiser_placements)
-    puts computer_cruiser_placements
-    puts @comp_board.render(true) # remove later
+    computer_cruiser_placements
     set_computer_submarine
 
   else
@@ -126,20 +125,52 @@ def set_computer_submarine
 
   if @comp_board.valid_placement?(@comp_sub, computer_sub_placements) == true
     @comp_board.place(@comp_sub, computer_sub_placements)
-    puts computer_sub_placements
-    puts @comp_board.render(true) # remove later
-    start_the_match
+    gameplay
   else
     set_computer_submarine
   end
 
 end
 
-def start_the_match
-  puts "looks like it worked"
+def gameplay
+  until @comp_cruiser.ship_health == 0 && @comp_sub.ship_health == 0 || @cruiser.ship_health == 0 && @submarine.ship_health == 0
+    take_turn
+  end
+
+  if @comp_cruiser.ship_health == 0 && @comp_sub.ship_health == 0
+    puts "You won!"
+  else
+    puts "Computer has won. Better luck next time..."
+    main_menu
+  end
+end
+
+def take_turn
+  puts "\n Enter the coordinate for your shot:"
+  user_shot = gets.chomp.to_s.upcase
+  if @comp_board.valid_coordinate?(user_shot) == true
+    @comp_board.cells[user_shot].fire_upon
+    puts "=============COMPUTER BOARD============="
+    puts @comp_board.render
+    computer_take_turn
+  else
+    puts "That is not a valid coordinate:"
+    take_turn
+  end
+end
+
+def computer_take_turn
+  comp_shot = (('A'..'D').to_a.sample + rand(1..4).to_s)
+  if @board.cells[comp_shot].health == 0
+    computer_take_turn
+  else
+    @board.cells[comp_shot].fire_upon
+    puts "==============PLAYER BOARD=============="
+    puts @board.render(true)
+    take_turn
+  end
 end
 
 
 
-# main_menu
-set_computer_cruiser
+main_menu
