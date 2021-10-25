@@ -3,7 +3,8 @@ require './lib/ship'
 class Cell
   attr_reader :coordinate,
               :ship,
-              :fired_upon
+              :fired_upon,
+              :health
 
   def initialize(coordinate)
     @coordinate = coordinate
@@ -49,6 +50,16 @@ class Cell
     end
     else
       "."
+    end
+  end
+
+  def feedback
+    if render == "S"
+        puts "has sunk the #{@ship.name}!"
+      elsif render == "H"
+        puts "has hit the #{@ship.name}!"
+      else
+        puts "was a miss."
     end
   end
 end
