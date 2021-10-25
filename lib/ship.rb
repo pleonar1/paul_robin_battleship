@@ -4,9 +4,9 @@ class Ship
               :ship_health
 
   def initialize(name, length)
-    @name   = name
-    @length = length
-    @ship_health = 3
+    @name        = name
+    @length      = length
+    @ship_health = length
   end
 
   def sunk?

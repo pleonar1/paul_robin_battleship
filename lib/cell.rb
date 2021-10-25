@@ -53,20 +53,28 @@ class Cell
     #   "."
     # end
 
-    if @fired_upon == true && empty? == true
-      "M"
-    elsif reveal == true && @ship != nil && @ship.sunk? == false && @fired_upon == false
-      "S"
-    elsif @fired_upon == true && @health == 0 && empty? == false
-      "H"
-      if @ship.sunk? == true
-      "X"
+    if @ship == nil
+      if @fired_upon
+        "M"
       else
-      "H"
+        "."
+      end
+    else #there is a ship
+      if @fired_upon
+        if @ship.sunk?
+          "X"
+        else
+          "H"
+        end
+      else #not fired upon
+        if reveal == true
+          "S"
+        else
+          "."
+        end
+      end
     end
-    else
-      "."
-    end
+
   end
 
   def feedback
