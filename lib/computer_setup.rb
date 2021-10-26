@@ -6,7 +6,11 @@ class ComputerSetup
   attr_reader :comp_board
 
   def initialize
-    @comp_board   = Board.new
+    @comp_board = Board.new
+  end
+
+  def clear_board
+    @comp_board = Board.new
   end
 
 

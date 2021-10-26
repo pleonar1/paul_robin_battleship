@@ -10,6 +10,10 @@ class Setup
     @comp_board = Board.new
   end
 
+  def clear_board
+    @board = Board.new
+  end
+
   def place_ships(ship)
     puts "==============PLAYER BOARD=============="
     puts @board.render(true)
