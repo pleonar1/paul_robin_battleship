@@ -2,6 +2,7 @@ require './lib/ship'
 require './lib/cell'
 require './lib/board'
 require './lib/setup'
+require './lib/computer_setup'
 
 
 @board            = Board.new
@@ -11,7 +12,7 @@ require './lib/setup'
 @comp_cruiser     = Ship.new("Computer Cruiser", 3)
 @comp_sub         = Ship.new("Computer Submarine", 2)
 @player_setup     = Setup.new("Player")
-@computer_setup   = Setup.new("Computer")
+@computer_setup   = ComputerSetup.new
 
 
 
@@ -213,9 +214,11 @@ def computer_take_turn
 end
 
 
-@player_setup.place_ships
+# @player_setup.place_ships
 
-
+# @computer_setup.place_computer_ship(@comp_sub)
+# @computer_setup.place_computer_ship(@comp_cruiser)
+# puts @computer_setup.comp_board.render(true)
 
 
 
