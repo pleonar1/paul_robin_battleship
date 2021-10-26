@@ -7,28 +7,39 @@ class Setup
 
     def initialize(player)
 
-    @player             = player
-    @player_placements  = []
-
+    @player           = player
+    @board            = Board.new
+    @comp_board       = Board.new
+    @cruiser          = Ship.new("Cruiser", 3)
+    @submarine        = Ship.new("Submarine", 2)
 
 
   end
 
-  def place_ships
-    @board
-    puts "Enter the squares for the Cruiser (3 spaces):"
-    (@ship.length).times do |i|
+  def place_ships(ship)
+    puts @board.render(true)
+    @player_placements  = []
+    puts "Enter the squares for the #{ship.name} (#{ship.length} spaces):"
+    (ship.length).times do |i|
       puts "Position #{i + 1}: "
       ship_placement = gets.chomp.to_s.upcase
-        if @board.valid_placement?(@cruiser, ship_placement) == false
-          puts "Please enter a valid placement."
-          place_ships
-        elsif ship_placement == "!"
-            end_program
-        else
+
+      player_placements << ship_placement
       end
-    player_placements << ship_placement
-    player_placements
+
+
+
+    if @board.valid_placement?(ship, player_placements) == true
+      puts "Nice! Your #{ship.name} has been placed!"
+      @board.place(ship, player_placements)
+
+      puts "=============COMPUTER BOARD============="
+      puts @comp_board.render
+      puts "==============PLAYER BOARD=============="
+      puts @board.render(true)
+    else
+      puts "Invalid input. Please try again."
+      place_ships(ship)
     end
   end
 
