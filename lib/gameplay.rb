@@ -83,28 +83,28 @@ class Gameplay
     end
   end
 
-    def is_game_over?
-      if @comp_cruiser.sunk? == true && @comp_sub.sunk? == true
-        puts "You won!"
-        clear_board
-      elsif @cruiser.sunk? == true  && @submarine.sunk? == true
-        puts "Computer has won. Better luck next time..."
-        clear_board
-      else
-      end
-    end
-
-    def clear_board
-      @cruiser          = Ship.new("Cruiser", 3)
-      @submarine        = Ship.new("Submarine", 2)
-      @comp_cruiser     = Ship.new("Computer Cruiser", 3)
-      @comp_sub         = Ship.new("Computer Submarine", 2)
-
-      main_menu
-    end
-
-    def end_program
-      puts "bye bye"
-      exit!
+  def is_game_over?
+    if @comp_cruiser.sunk? == true && @comp_sub.sunk? == true
+      puts "You won!"
+      clear_board
+    elsif @cruiser.sunk? == true  && @submarine.sunk? == true
+      puts "Computer has won. Better luck next time..."
+      clear_board
+    else
     end
   end
+
+  def clear_board
+    @cruiser          = Ship.new("Cruiser", 3)
+    @submarine        = Ship.new("Submarine", 2)
+    @comp_cruiser     = Ship.new("Computer Cruiser", 3)
+    @comp_sub         = Ship.new("Computer Submarine", 2)
+
+    main_menu
+  end
+
+  def end_program
+    puts "bye bye"
+    exit!
+  end
+end
