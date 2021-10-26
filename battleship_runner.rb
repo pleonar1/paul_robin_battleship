@@ -2,6 +2,7 @@ require './lib/ship'
 require './lib/cell'
 require './lib/board'
 require './lib/setup'
+require './lib/computer_setup'
 
 
 @board            = Board.new
@@ -11,7 +12,7 @@ require './lib/setup'
 @comp_cruiser     = Ship.new("Computer Cruiser", 3)
 @comp_sub         = Ship.new("Computer Submarine", 2)
 @player_setup     = Setup.new("Player")
-@computer_setup   = Setup.new("Computer")
+@computer_setup   = ComputerSetup.new
 
 
 
@@ -204,6 +205,7 @@ def computer_take_turn
 end
 
 
+
 # @player_setup.place_ships(@cruiser)
 # @player_setup.place_ships(@submarine)
 # puts "Nice work. It placed the players ships."
@@ -216,6 +218,7 @@ end
 
 p "Welcome to BATTLESHIP"
 p "Enter p to play. Enter q to quit."
+
 
 user_input = gets.chomp
 
