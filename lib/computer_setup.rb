@@ -6,10 +6,13 @@ class ComputerSetup
   attr_reader :comp_board
 
   def initialize
-    @comp_board   = Board.new
-    @comp_sub     = Ship.new("Computer Submarine", 2)
-    @comp_cruiser = Ship.new("Computer Cruiser", 3)
+    @comp_board = Board.new
   end
+
+  def clear_board
+    @comp_board = Board.new
+  end
+
 
   def place_computer_ship(ship)
     computer_ship_placements = []
@@ -19,6 +22,8 @@ class ComputerSetup
     end
     if @comp_board.valid_placement?(ship, computer_ship_placements) == true
       @comp_board.place(ship, computer_ship_placements)
+
+
     else
       place_computer_ship(ship)
     end
