@@ -3,16 +3,11 @@ require './lib/cell'
 require './lib/board'
 
 class Setup
-  attr_reader :player, :player_placements, :board
+  attr_reader :board, :player_placements
 
-    def initialize(player)
-
-    @player           = player
-    @board            = Board.new
-    @comp_board       = Board.new
-    @cruiser          = Ship.new("Cruiser", 3)
-    @submarine        = Ship.new("Submarine", 2)
-
+  def initialize
+    @board      = Board.new
+    @comp_board = Board.new
   end
 
   def place_ships(ship)

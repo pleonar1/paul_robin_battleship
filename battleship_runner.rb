@@ -8,7 +8,7 @@ require './lib/computer_setup'
 @submarine        = Ship.new("Submarine", 2)
 @comp_cruiser     = Ship.new("Computer Cruiser", 3)
 @comp_sub         = Ship.new("Computer Submarine", 2)
-@player_setup     = Setup.new("Player")
+@player_setup     = Setup.new
 @computer_setup   = ComputerSetup.new
 
 def start
@@ -93,7 +93,7 @@ def clear_board
   @submarine        = Ship.new("Submarine", 2)
   @comp_cruiser     = Ship.new("Computer Cruiser", 3)
   @comp_sub         = Ship.new("Computer Submarine", 2)
-  @player_setup     = Setup.new("Player")
+  @player_setup     = Setup.new
   @computer_setup   = ComputerSetup.new
   main_menu
 end
