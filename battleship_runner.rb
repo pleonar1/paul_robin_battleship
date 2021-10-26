@@ -15,109 +15,100 @@ require './lib/setup'
 
 
 
-def main_menu
-  p "Welcome to BATTLESHIP"
-  p "Enter p to play. Enter q to quit."
-
-  user_input = gets.chomp
-
-  if user_input == "q"
-    "Ok. Maybe another time!"
-    end_program
-  elsif user_input == "p"
-    "Awesome! Here we go!"
-    start
-  else
-    "Please enter a valid key"
-    user_input = gets.chomp
-  end
-end
 
 
 def start
   puts "I have laid out my ships on the grid."
   puts "You now need to lay out your two ships."
   puts "The Cruiser is three units long and the Submarine is two units long."
-  puts "==============PLAYER BOARD=============="
-  puts @board.render(true)
+  # puts "==============PLAYER BOARD=============="
+  # puts @board.render(true)
 
+  @player_setup.place_ships(@cruiser)
 
-  player_placements = [] #<<<< This will be removed
-  puts "Enter the squares for the Cruiser (3 spaces):"
-
-  puts "Position 1: "
-  cruiser_placement_1 = gets.chomp.to_s.upcase #<<<< This onward will be removed
-    if cruiser_placement_1 == "!"
-      end_program
-    else
-  end
-  player_placements << cruiser_placement_1
-
-  puts "Position 2: "
-  cruiser_placement_2 = gets.chomp.to_s.upcase
-    if cruiser_placement_2 == "!"
-      end_program
-    else
-  end
-  player_placements << cruiser_placement_2
-
-  puts "Position 3: "
-  cruiser_placement_3 = gets.chomp.to_s.upcase
-  player_placements << cruiser_placement_3
-    if cruiser_placement_3 == "!"
-      end_program
-    else
-  end
-
-  if @board.valid_placement?(@cruiser, player_placements) == true
-    puts "Nice! Your cruiser has been placed!"
-    @board.place(@cruiser, player_placements)
-    set_sub
-  else
-    puts "Invalid input. Please try again."
-    start
-  end
-end
-
-
-def set_sub
   puts "Now you can set your Submarine"
   puts "For a valid placement, the sub cannot overlap with cruiser"
   puts "==============PLAYER BOARD=============="
-  puts @board.render(true)
+  # puts @board.render(true)
 
-  player_placements = []
-  puts "Enter the squares for the Submarine (2 spaces):"
+  @player_setup.place_ships(@submarine)
 
-  puts "Position 1: "
-  sub_placement_1 = gets.chomp.to_s.upcase
-    if sub_placement_1 == "!"
-      end_program
-    else
-  end
-  player_placements << sub_placement_1
-
-  puts "Position 2: "
-  sub_placement_2 = gets.chomp.to_s.upcase
-    if sub_placement_2 == "!"
-      end_program
-    else
-  end
-  player_placements << sub_placement_2
-
-  if @board.valid_placement?(@submarine, player_placements) == true
-    puts "Nice! Your cruiser has been placed!"
-    @board.place(@submarine, player_placements)
-    puts "=============COMPUTER BOARD============="
-    puts @comp_board.render
-    puts "==============PLAYER BOARD=============="
-    puts @board.render(true)
-    set_computer_cruiser
-  else
-    puts "Invalid input. Please try again."
-    set_sub
-  end
+  # player_placements = [] #<<<< This will be removed
+  # puts "Enter the squares for the Cruiser (3 spaces):"
+  #
+  # puts "Position 1: "
+  # cruiser_placement_1 = gets.chomp.to_s.upcase #<<<< This onward will be removed
+  #   if cruiser_placement_1 == "!"
+  #     end_program
+  #   else
+  # end
+  # player_placements << cruiser_placement_1
+  #
+  # puts "Position 2: "
+  # cruiser_placement_2 = gets.chomp.to_s.upcase
+  #   if cruiser_placement_2 == "!"
+  #     end_program
+  #   else
+  # end
+  # player_placements << cruiser_placement_2
+  #
+  # puts "Position 3: "
+  # cruiser_placement_3 = gets.chomp.to_s.upcase
+  # player_placements << cruiser_placement_3
+  #   if cruiser_placement_3 == "!"
+  #     end_program
+  #   else
+  # end
+  #
+  # if @board.valid_placement?(@cruiser, player_placements) == true
+  #   puts "Nice! Your cruiser has been placed!"
+  #   @board.place(@cruiser, player_placements)
+  #   set_sub
+  # else
+  #   puts "Invalid input. Please try again."
+  #   start
+  # end
 end
+
+
+# def set_sub
+  # puts "Now you can set your Submarine"
+  # puts "For a valid placement, the sub cannot overlap with cruiser"
+  # puts "==============PLAYER BOARD=============="
+  # puts @board.render(true)
+  #
+  # player_placements = []
+  # puts "Enter the squares for the Submarine (2 spaces):"
+  #
+  # puts "Position 1: "
+  # sub_placement_1 = gets.chomp.to_s.upcase
+  #   if sub_placement_1 == "!"
+  #     end_program
+  #   else
+  # end
+  # player_placements << sub_placement_1
+  #
+  # puts "Position 2: "
+  # sub_placement_2 = gets.chomp.to_s.upcase
+  #   if sub_placement_2 == "!"
+  #     end_program
+  #   else
+  # end
+  # player_placements << sub_placement_2
+
+#   if @board.valid_placement?(@submarine, player_placements) == true
+#     puts "Nice! Your Submarine has been placed!"
+#     @board.place(@submarine, player_placements)
+#     puts "=============COMPUTER BOARD============="
+#     puts @comp_board.render
+#     puts "==============PLAYER BOARD=============="
+#     puts @board.render(true)
+#     set_computer_cruiser
+#   else
+#     puts "Invalid input. Please try again."
+#     set_sub
+#   end
+# end
 
 
 def set_computer_cruiser
@@ -213,13 +204,33 @@ def computer_take_turn
 end
 
 
-@player_setup.place_ships
+# @player_setup.place_ships(@cruiser)
+# @player_setup.place_ships(@submarine)
+# puts "Nice work. It placed the players ships."
+# @computer_setup.place_ships(@cruiser)
+# @computer_setup.place_ships(@submarine)
+# puts "Nice work. It placed the computer ships."
 
 
 
 
+p "Welcome to BATTLESHIP"
+p "Enter p to play. Enter q to quit."
 
-main_menu
+user_input = gets.chomp
+
+if user_input == "q"
+  "Ok. Maybe another time!"
+  end_program
+elsif user_input == "p"
+  "Awesome! Here we go!"
+  start
+else
+  "Please enter a valid key"
+  user_input = gets.chomp
+end
+
+# main_menu
 
 def end_program
   puts "BYE  BYE"
