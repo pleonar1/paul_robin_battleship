@@ -3,7 +3,7 @@ require './lib/cell'
 require './lib/board'
 
 class Setup
-  attr_reader :player, :player_placements
+  attr_reader :player, :player_placements, :board
 
     def initialize(player)
 
@@ -35,8 +35,7 @@ class Setup
 
       puts "=============COMPUTER BOARD============="
       puts @comp_board.render
-      puts "==============PLAYER BOARD=============="
-      puts @board.render(true)
+
     else
       puts "Invalid input. Please try again."
       place_ships(ship)
