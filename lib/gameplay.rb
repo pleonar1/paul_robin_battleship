@@ -27,7 +27,7 @@ class Gameplay
       start
     else
       "Please enter a valid key"
-      user_input = gets.chomp
+    end_program
     end
   end
 
@@ -50,7 +50,7 @@ class Gameplay
   end
 
   def take_turn
-    puts "\n Enter the coordinate for your shot:"
+    puts "\n Enter the coordinate for your shot (ex: a1):"
     user_shot = gets.chomp.to_s.upcase
     if @computer_setup.comp_board.valid_coordinate?(user_shot) == true && @computer_setup.comp_board.cells[user_shot].fired_upon? == false
       @computer_setup.comp_board.cells[user_shot].fire_upon
@@ -103,8 +103,9 @@ class Gameplay
     main_menu
   end
 
+  
   def end_program
-    puts "bye bye"
+    puts "Thanks for playing!"
     exit!
   end
 end

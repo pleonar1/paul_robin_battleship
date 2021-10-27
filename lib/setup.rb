@@ -18,7 +18,7 @@ class Setup
     puts "==============PLAYER BOARD=============="
     puts @board.render(true)
     @player_placements  = []
-    puts "\nEnter the squares for the #{ship.name} (#{ship.length} spaces):"
+    puts "\nEnter the squares for the #{ship.name} (#{ship.length} spaces)(Ex: a1, a2, etc):"
     (ship.length).times do |i|
       puts "Position #{i + 1}: "
       ship_placement = gets.chomp.to_s.upcase
